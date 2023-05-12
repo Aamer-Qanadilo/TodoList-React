@@ -1,38 +1,31 @@
-.App {
-  text-align: center;
+:root {
+  --boxShadow: 0 2px 15px -3px rgba(0, 0, 0, 0.2),
+    0 10px 20px -2px rgba(0, 0, 0, 0.2);
+  --textColor: rgb(109, 108, 108);
+  --paragraphOpacity: 75%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body,
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#todoListForm,
+.TodoListContainer {
+  min-width: 80%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.full-width {
+  width: 100% !important;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.section-seperator {
+  width: 80%;
+  height: 1px;
+  opacity: var(--paragraphOpacity);
+  background-color: var(--textColor);
+  margin: 3rem auto;
+  position: relative;
 }
