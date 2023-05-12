@@ -1,0 +1,51 @@
+.body-container {
+  width: 90%;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 40px;
+}
+
+#todoListForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  box-shadow: var(--boxShadow);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#todoListForm div.todoListInputs {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  gap: 10px;
+}
+
+#todoListForm button {
+  border: 0;
+  padding: 5px 40px;
+  border-radius: 5px;
+  /* box-shadow: var(--boxShadow); */
+  transition: all 0.2s ease-in-out;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+}
+
+#todoListForm button:disabled {
+  opacity: 0.5;
+}
+
+#todoListForm button:not([disabled]):hover {
+  background-color: #fff;
+  color: black;
+}

@@ -1,0 +1,16 @@
+#todoListForm div.todoListInputs div {
+  display: flex;
+  justify-content: space-between;
+  gap: 2px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+#todoListForm div.todoListInputs div label {
+  flex-grow: 1;
+}
+
+#todoListForm div.todoListInputs div input {
+  flex-grow: 11;
+  padding: 1px 5px;
+}
