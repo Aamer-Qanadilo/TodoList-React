@@ -1,0 +1,39 @@
+.TodoListContainer .taskCard {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  /* border: 1px solid black; */
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: var(--boxShadow);
+  animation: left-to-right-animation 0.3s 1;
+}
+
+.TodoListContainer .taskCard:nth-child(even) {
+  animation: right-to-left-animation 0.3s 1;
+}
+
+.TodoListContainer .taskCard.completed {
+  background-color: #59ce8f;
+  color: #e8f9fd;
+}
+
+.TodoListContainer .taskCard .taskCardContent {
+  flex-grow: 10;
+}
+
+.TodoListContainer .taskCard .taskCardContent * {
+  width: 100%;
+}
+
+.TodoListContainer .taskCard .taskCardButtons {
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.TodoListContainer .taskCard .taskCardButtons * {
+  cursor: pointer;
+}
