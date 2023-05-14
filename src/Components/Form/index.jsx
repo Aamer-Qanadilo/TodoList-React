@@ -8,7 +8,7 @@ const DEFAULT_STATE = {
   assignee: "",
 };
 
-const FormContainer = ({ tasks, setTasks }) => {
+const FormContainer = ({ tasks = [], setTasks }) => {
   const [inputFields, setInputFields] = useState(DEFAULT_STATE);
 
   const [errors, setErrors] = useState({});
@@ -46,12 +46,17 @@ const FormContainer = ({ tasks, setTasks }) => {
 
     if (isFormInvalid(errors)) return;
 
-    const newTask = { ...inputFields, status: "started" };
+    let newID = 0;
+
+    tasks.forEach((task) => {
+      if (task.id > newID) newID = task.id + 1;
+    });
+
+    const newTask = { ...inputFields, status: "started", id: newID };
 
     setTasks([...tasks, newTask]);
 
     setInputFields(DEFAULT_STATE);
-    // clearForm(inputFields, setInputFields);
   };
 
   return (
