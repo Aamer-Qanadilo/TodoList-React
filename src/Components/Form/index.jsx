@@ -46,7 +46,7 @@ const FormContainer = ({ tasks, setTasks }) => {
 
     if (isFormInvalid(errors)) return;
 
-    const newTask = { ...inputFields };
+    const newTask = { ...inputFields, status: "started" };
 
     setTasks([...tasks, newTask]);
 
