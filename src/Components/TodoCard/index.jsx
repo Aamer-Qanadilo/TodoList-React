@@ -34,7 +34,7 @@ const TodoCard = ({ task, index, onToggle, onDelete }) => {
           className="fa-solid fa-trash"
           style={{ color: "#FF1E00" }}
           aria-label="Delete task"
-          onClick={() => onDelete(index)}
+          onClick={() => onDelete(task.id)}
         ></i>
         <i
           className={
@@ -46,7 +46,7 @@ const TodoCard = ({ task, index, onToggle, onDelete }) => {
             color: `${task.status === "finished" ? "#df0c0c" : "#207e44"}`,
           }}
           aria-label="Toggle Task Completed"
-          onClick={() => onToggle(index)}
+          onClick={() => onToggle(task.id)}
         ></i>
       </div>
     </div>

@@ -32,21 +32,22 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   };
 
-  const handleToggleDone = (index) => {
-    const task = { ...tasks[index] };
-
-    task.status = task.status === "started" ? "finished" : "started";
-
-    const tasksHolder = tasks.slice();
-
-    tasksHolder.splice(index, 1, task);
+  const handleToggleDone = (id) => {
+    const tasksHolder = tasks.map((task, index) => {
+      if (task.id === id) {
+        const tempTask = { ...task };
+        tempTask.status =
+          tempTask.status === "started" ? "finished" : "started";
+        return tempTask;
+      } else {
+        return task;
+      }
+    });
 
     setTasks(tasksHolder);
   };
 
-  const handleDeleteCard = (index) => {
-    const tasksHolder = tasks.slice();
-
+  const handleDeleteCard = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -57,7 +58,9 @@ function App() {
       confirmButtonText: "Delete!",
     }).then((result) => {
       if (result.isConfirmed) {
-        tasksHolder.splice(index, 1);
+        const tasksHolder = tasks.filter((task) => task.id !== id);
+
+        // tasksHolder.splice(index, 1);
 
         setTasks(tasksHolder);
 
@@ -76,7 +79,11 @@ function App() {
       />
       <FilterInput filter={filter} onFilterChange={handleFilterChange} />
       <ListContainer
-        tasks={tasks}
+        tasks={tasks.filter(
+          (task) =>
+            task.status.toLowerCase().includes(filter.toLowerCase()) &&
+            task.task.toLowerCase().includes(searchField.toLowerCase()),
+        )}
         handleDeleteCard={handleDeleteCard}
         handleToggleDone={handleToggleDone}
       />
