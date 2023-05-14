@@ -20,12 +20,3 @@ body,
 .full-width {
   width: 100% !important;
 }
-
-.section-seperator {
-  width: 80%;
-  height: 1px;
-  opacity: var(--paragraphOpacity);
-  background-color: var(--textColor);
-  margin: 3rem auto;
-  position: relative;
-}
