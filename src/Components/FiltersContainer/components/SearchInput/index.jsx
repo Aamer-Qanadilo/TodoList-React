@@ -3,8 +3,9 @@ import "./styles.css";
 
 const SearchInput = ({ searchField, onSearchChange }) => {
   return (
-    <div class="search-container">
+    <div className="input-group w-50">
       <input
+        className="form-control"
         type="search"
         name="search-field"
         id="search-field"

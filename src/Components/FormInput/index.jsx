@@ -4,7 +4,6 @@ import "./styles.css";
 const FormInput = ({ type, name, id, error, value, onChange }) => {
   return (
     <div>
-      <label htmlFor={id}>{name}:</label>
       <input
         type={type}
         name={name}
@@ -14,6 +13,7 @@ const FormInput = ({ type, name, id, error, value, onChange }) => {
         onChange={onChange}
         required
       />
+      <label htmlFor={id}>{name}</label>
       {error && <p className="alert alert-danger full-width">{error}</p>}
     </div>
   );

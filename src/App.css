@@ -5,16 +5,25 @@
   --paragraphOpacity: 75%;
 }
 
+body {
+  background: #f3f0f0;
+}
+
 body,
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  background: #fff;
 }
 
 #todoListForm,
 .TodoListContainer {
   min-width: 80%;
+}
+
+.body-container {
+  width: 100%;
 }
 
 .full-width {

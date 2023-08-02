@@ -3,7 +3,9 @@ import "./styles.css";
 
 const FilterInput = ({ filter, onFilterChange }) => {
   return (
+
     <select
+      class="form-select m-0 w-25"
       name="list-genres"
       id="list-genres"
       value={filter}

@@ -11,7 +11,7 @@ const ListContainer = ({
   handleDeleteCard,
 }) => {
   return (
-    <section class="TodoListContainer">
+    <section className="TodoListContainer">
       {tasks.length ? (
         tasks.map((task, index) => {
           return (

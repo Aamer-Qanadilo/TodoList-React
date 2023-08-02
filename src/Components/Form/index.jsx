@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import "./styles.css";
 import FormInput from "../FormInput";
 import Joi from "joi";
+import { v4 as uuid } from "uuid";
+import "./styles.css";
+
 
 const DEFAULT_STATE = {
   task: "",
@@ -46,11 +48,11 @@ const FormContainer = ({ tasks = [], setTasks }) => {
 
     if (isFormInvalid(errors)) return;
 
-    let newID = 0;
+    let newID = uuid();
 
-    tasks.forEach((task) => {
-      if (task.id > newID) newID = task.id + 1;
-    });
+    // tasks.forEach((task) => {
+    //   if (task.id > newID) newID = task.id + 1;
+    // });
 
     const newTask = { ...inputFields, status: "started", id: newID };
 
@@ -64,6 +66,7 @@ const FormContainer = ({ tasks = [], setTasks }) => {
       <h1>Todo List</h1>
       <div className="todoListInputs">
         <FormInput
+          key="task"
           id="task"
           name="task"
           type="text"
@@ -72,6 +75,7 @@ const FormContainer = ({ tasks = [], setTasks }) => {
           error={errors.task}
         />
         <FormInput
+          key="assignee"
           id="assignee"
           name="assignee"
           type="text"

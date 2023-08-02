@@ -1,15 +1,16 @@
 import React from "react";
 import "./styles.css";
-import TaskName from "./TaskName";
-import AssigneeName from "./AssigneeName";
-import TaskDeleteButton from "./TaskDeleteButton";
-import TaskToggleButton from "./TaskToggleButton";
+import TaskName from "./components/TaskName";
+import AssigneeName from "./components/AssigneeName";
+import TaskDeleteButton from "./components/TaskDeleteButton";
+import TaskToggleButton from "./components/TaskToggleButton";
 
 const TodoCard = ({ task, index, onToggle, onDelete }) => {
   return (
     <div
       className={`taskCard ${task.status === "finished" ? "completed" : ""}`}
       aria-rowindex={index}
+      draggable
     >
       <div className="taskCardContent">
         <TaskName task={task} />
