@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import FormContainer from "./Components/Form";
-import SearchInput from "./Components/SearchInput";
-import FilterInput from "./Components/FilterInput";
 import SectionSeperator from "./Components/common/SectionSeperator";
 import ListContainer from "./Components/ListContainer";
 import Swal from "sweetalert2";
+import FiltersContainer from "./Components/FiltersContainer";
 
 function App() {
   const [tasks, setTasks] = useState(
@@ -73,11 +72,12 @@ function App() {
     <div className="body-container">
       <FormContainer tasks={tasks} setTasks={setTasks} />
       <SectionSeperator />
-      <SearchInput
+      <FiltersContainer
+        filter={filter}
         searchField={searchField}
-        onSearchChange={handleSearchChange}
+        handleFilterChange={handleFilterChange}
+        handleSearchChange={handleSearchChange}
       />
-      <FilterInput filter={filter} onFilterChange={handleFilterChange} />
       <ListContainer
         tasks={tasks.filter(
           (task) =>

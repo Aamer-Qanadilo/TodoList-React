@@ -14,6 +14,10 @@
   animation: right-to-left-animation 0.3s 1;
 }
 
+.TodoListContainer .taskCard * {
+  background: transparent;
+}
+
 .TodoListContainer .taskCard.completed {
   background-color: #59ce8f;
   color: #e8f9fd;

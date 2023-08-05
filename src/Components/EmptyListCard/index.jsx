@@ -3,7 +3,7 @@ import "./styles.css";
 
 const EmptyListCard = () => {
   return (
-    <div class="empty-list">
+    <div className="empty-list">
       <p>Nothing to show here, please add new ones to show..</p>
     </div>
   );
