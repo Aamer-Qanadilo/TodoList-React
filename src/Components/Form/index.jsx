@@ -1,24 +1,27 @@
-import React, { useState } from "react";
-import FormInput from "../FormInput";
+import React, { useContext, useState } from "react";
 import Joi from "joi";
-import { v4 as uuid } from "uuid";
-import "./styles.css";
 
+import FormInput from "../FormInput";
+import { TodoContext } from "../../context/TodoContext";
+
+import "./styles.css";
 
 const DEFAULT_STATE = {
   task: "",
   assignee: "",
 };
 
-const FormContainer = ({ tasks = [], setTasks }) => {
-  const [inputFields, setInputFields] = useState(DEFAULT_STATE);
+const formSchema = Joi.object({
+  task: Joi.string().min(3).max(32).required(),
+  assignee: Joi.string().min(5).max(32).required(),
+});
 
+const FormContainer = ({ tasks = [], setTasks }) => {
+  const { handleCreate } = useContext(TodoContext);
+
+  const [inputFields, setInputFields] = useState(DEFAULT_STATE);
   const [errors, setErrors] = useState({});
 
-  const formSchema = Joi.object({
-    task: Joi.string().min(3).max(32).required(),
-    assignee: Joi.string().min(5).max(32).required(),
-  });
 
   const validateInput = (input, inputSchema) => {
     return inputSchema.validate(input);
@@ -35,8 +38,7 @@ const FormContainer = ({ tasks = [], setTasks }) => {
     if (validation.error) {
       setErrors({ ...errors, [name]: validation.error.details[0].message });
     } else {
-      const errs = { ...errors };
-      delete errs[name];
+      const { [name]: _, ...errs } = errors;
       setErrors({ ...errs });
     }
 
@@ -48,15 +50,7 @@ const FormContainer = ({ tasks = [], setTasks }) => {
 
     if (isFormInvalid(errors)) return;
 
-    let newID = uuid();
-
-    // tasks.forEach((task) => {
-    //   if (task.id > newID) newID = task.id + 1;
-    // });
-
-    const newTask = { ...inputFields, status: "started", id: newID };
-
-    setTasks([...tasks, newTask]);
+    handleCreate(inputFields);
 
     setInputFields(DEFAULT_STATE);
   };

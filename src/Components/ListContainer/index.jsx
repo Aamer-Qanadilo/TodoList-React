@@ -5,10 +5,8 @@ import EmptyListCard from "../EmptyListCard";
 
 const ListContainer = ({
   tasks = [],
-  filter = "",
-  searchField = "",
-  handleToggleDone,
-  handleDeleteCard,
+  onToggleDone,
+  onDeleteCard,
 }) => {
   return (
     <section className="TodoListContainer">
@@ -18,8 +16,8 @@ const ListContainer = ({
             <TodoCard
               index={index}
               task={task}
-              onToggle={handleToggleDone}
-              onDelete={handleDeleteCard}
+              onToggle={onToggleDone}
+              onDelete={onDeleteCard}
               key={task.id}
             />
           );

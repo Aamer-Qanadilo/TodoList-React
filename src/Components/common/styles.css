@@ -1,5 +1,5 @@
 .section-seperator {
-  width: 80%;
+  width: calc(var(--container) + 20%);
   height: 1px;
   opacity: var(--paragraphOpacity);
   background-color: var(--textColor);
