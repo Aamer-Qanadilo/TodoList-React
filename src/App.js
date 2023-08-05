@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import "./App.css";
 import FormContainer from "./Components/Form";
 import SectionSeperator from "./Components/common/SectionSeperator";
 import ListContainer from "./Components/ListContainer";
 import Swal from "sweetalert2";
 import FiltersContainer from "./Components/FiltersContainer";
+import { TodoContext } from "./context/TodoContext";
 
 function App() {
-  const [tasks, setTasks] = useState(
-    JSON.parse(localStorage.getItem("tasks")) || [],
-  );
+  const { todoList, handleToggleDone, handleDelete } = useContext(TodoContext);
+
   const [searchField, setSearchField] = useState("");
   const [filter, setFilter] = useState("");
-
-  useEffect(() => {
-    updateLocalStorage();
-  }, [tasks]);
 
   const handleFilterChange = (event) => {
     const { value } = event.target;
@@ -25,25 +21,6 @@ function App() {
   const handleSearchChange = (event) => {
     const { value } = event.target;
     setSearchField(value);
-  };
-
-  const updateLocalStorage = () => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  };
-
-  const handleToggleDone = (id) => {
-    const tasksHolder = tasks.map((task, index) => {
-      if (task.id === id) {
-        const tempTask = { ...task };
-        tempTask.status =
-          tempTask.status === "started" ? "finished" : "started";
-        return tempTask;
-      } else {
-        return task;
-      }
-    });
-
-    setTasks(tasksHolder);
   };
 
   const handleDeleteCard = (id) => {
@@ -57,35 +34,33 @@ function App() {
       confirmButtonText: "Delete!",
     }).then((result) => {
       if (result.isConfirmed) {
-        const tasksHolder = tasks.filter((task) => task.id !== id);
-
-        // tasksHolder.splice(index, 1);
-
-        setTasks(tasksHolder);
+        handleDelete(id);
 
         Swal.fire("Deleted!", "Task has been deleted.", "success");
       }
     });
   };
 
+  const filteredData = todoList.filter(
+    (task) =>
+      task.status.toLowerCase().includes(filter.toLowerCase()) &&
+      task.task.toLowerCase().includes(searchField.toLowerCase()),
+  );
+
   return (
     <div className="body-container">
-      <FormContainer tasks={tasks} setTasks={setTasks} />
+      <FormContainer />
       <SectionSeperator />
       <FiltersContainer
         filter={filter}
         searchField={searchField}
-        handleFilterChange={handleFilterChange}
-        handleSearchChange={handleSearchChange}
+        onFilterChange={handleFilterChange}
+        onSearchChange={handleSearchChange}
       />
       <ListContainer
-        tasks={tasks.filter(
-          (task) =>
-            task.status.toLowerCase().includes(filter.toLowerCase()) &&
-            task.task.toLowerCase().includes(searchField.toLowerCase()),
-        )}
-        handleDeleteCard={handleDeleteCard}
-        handleToggleDone={handleToggleDone}
+        tasks={filteredData}
+        onDeleteCard={handleDeleteCard}
+        onToggleDone={handleToggleDone}
       />
     </div>
   );

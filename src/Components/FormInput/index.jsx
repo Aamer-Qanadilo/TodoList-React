@@ -3,17 +3,19 @@ import "./styles.css";
 
 const FormInput = ({ type, name, id, error, value, onChange }) => {
   return (
-    <div>
-      <input
-        type={type}
-        name={name}
-        id={id}
-        placeholder={`Enter ${name}`}
-        value={value}
-        onChange={onChange}
-        required
-      />
-      <label htmlFor={id}>{name}</label>
+    <div className="form__input-container">
+      <div className="form__input-field">
+        <input
+          type={type}
+          name={name}
+          id={id}
+          value={value}
+          onChange={onChange}
+          required
+        />
+        <label htmlFor={id}>{name}</label>
+      </div>
+
       {error && <p className="alert alert-danger full-width">{error}</p>}
     </div>
   );

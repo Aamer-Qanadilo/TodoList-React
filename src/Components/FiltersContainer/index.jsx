@@ -4,14 +4,14 @@ import FilterInput from './components/FilterInput'
 
 import './styles.css'
 
-const FiltersContainer = ({ filter, searchField, handleSearchChange, handleFilterChange }) => {
+const FiltersContainer = ({ filter, searchField, onSearchChange, onFilterChange }) => {
     return (
         <div className='filters mb-3'>
             <SearchInput
                 searchField={searchField}
-                onSearchChange={handleSearchChange}
+                onSearchChange={onSearchChange}
             />
-            <FilterInput filter={filter} onFilterChange={handleFilterChange} />
+            <FilterInput filter={filter} onFilterChange={onFilterChange} />
         </div>
     )
 }

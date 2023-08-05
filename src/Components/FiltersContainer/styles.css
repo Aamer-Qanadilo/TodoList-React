@@ -1,5 +1,5 @@
 .filters {
-  width: 80%;
+  width: var(--container);
   display: flex;
   justify-content: space-between;
 }
